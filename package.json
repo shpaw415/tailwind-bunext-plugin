@@ -9,5 +9,9 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "4.1.4 - x.x.x",
+    "tailwindcss": "4.1.4 - x.x.x"
   }
 }
