@@ -1,4 +1,5 @@
 import type { BunextPlugin } from "bunext-js/plugins/types.ts";
+import { cpSync } from "fs";
 
 const cwd = process.cwd();
 
@@ -9,6 +10,14 @@ export default {
       const TailwindCssFile = Bun.file(pathToTailwindCss);
       if ((await TailwindCssFile.exists()) == false) {
         await TailwindCssFile.write('@import "tailwindcss";');
+      }
+      const pathToTailwindConfig = `${cwd}/tailwind.config.ts`;
+      const TailwindConfigFile = Bun.file(pathToTailwindConfig);
+      if ((await TailwindConfigFile.exists()) == false) {
+        cpSync(
+          `${cwd}/node_modules/tailwind-bunext-plugin/tailwind.config.ts`,
+          pathToTailwindConfig
+        );
       }
     },
   },
